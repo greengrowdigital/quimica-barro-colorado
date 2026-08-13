@@ -1,0 +1,270 @@
+@import 'tailwindcss';
+
+/* ──────────────────────────────────────────────────────────────
+   Sistema de diseño — "Estación de campo"
+   Verde bosque drenched (sotobosque de Barro Colorado) + acento
+   arcilla, que es literalmente de donde viene el nombre de la isla.
+   ────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Superficies: del suelo del bosque hacia la luz */
+  --color-canopy-950: oklch(0.158 0.026 158);
+  --color-canopy-900: oklch(0.198 0.031 158);
+  --color-canopy-850: oklch(0.228 0.034 158);
+  --color-canopy-800: oklch(0.262 0.037 158);
+  --color-canopy-700: oklch(0.33 0.039 157);
+  --color-canopy-600: oklch(0.43 0.041 156);
+
+  /* Tinta: neblina de la mañana sobre el lago */
+  --color-mist-50: oklch(0.968 0.011 140);
+  --color-mist-200: oklch(0.878 0.017 145);
+  --color-mist-400: oklch(0.765 0.026 148);
+  --color-mist-600: oklch(0.635 0.03 150);
+
+  /* Arcilla: el "barro colorado" que le da nombre a la isla */
+  --color-clay-600: oklch(0.545 0.145 42);
+  --color-clay-500: oklch(0.645 0.158 45);
+  --color-clay-400: oklch(0.725 0.152 51);
+  --color-clay-300: oklch(0.83 0.11 62);
+
+  /* Luz que se filtra por el dosel */
+  --color-sun-400: oklch(0.865 0.132 92);
+
+  /* Clorofila: reservado para notación química y datos */
+  --color-leaf-400: oklch(0.79 0.155 152);
+  --color-leaf-500: oklch(0.685 0.152 154);
+
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Literata', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Spline Sans Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Escala tipográfica fluida, ratio ≈1.28 */
+  --text-step--1: clamp(0.82rem, 0.79rem + 0.16vw, 0.92rem);
+  --text-step-0: clamp(1.02rem, 0.98rem + 0.2vw, 1.14rem);
+  --text-step-1: clamp(1.26rem, 1.18rem + 0.4vw, 1.5rem);
+  --text-step-2: clamp(1.6rem, 1.44rem + 0.78vw, 2.1rem);
+  --text-step-3: clamp(2.05rem, 1.74rem + 1.5vw, 3rem);
+  --text-step-4: clamp(2.6rem, 2rem + 2.9vw, 4.4rem);
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Escala z semántica */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 30;
+  --z-scrim: 60;
+  --z-dialog: 70;
+  --z-header: 80;
+  --z-skip-link: 90;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --shell-x: clamp(1.15rem, 5vw, 5.5rem);
+    --header-h: 4.25rem;
+  }
+
+  * {
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: color-mix(in oklab, var(--color-clay-500) 22%, transparent);
+  }
+
+  body {
+    background-color: var(--color-canopy-950);
+    color: var(--color-mist-50);
+    font-family: var(--font-body);
+    font-size: var(--text-step-0);
+    line-height: 1.72;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-sun-400);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  :where(h2, h3, section)[id] {
+    scroll-margin-top: calc(var(--header-h) + 2.5rem);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-clay-500) 45%, transparent);
+    color: var(--color-mist-50);
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-canopy-950);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-canopy-700);
+    border-radius: 99px;
+    border: 3px solid var(--color-canopy-950);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-canopy-600);
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: var(--shell-x);
+  }
+
+  .shell-narrow {
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-inline: var(--shell-x);
+  }
+
+  /* Medida de lectura: 65–72ch */
+  .measure {
+    max-width: 68ch;
+  }
+
+  .lede {
+    font-size: var(--text-step-1);
+    line-height: 1.58;
+    color: var(--color-mist-200);
+  }
+
+  .field-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-mist-400);
+  }
+
+  .hairline {
+    border-top: 1px solid color-mix(in oklab, var(--color-canopy-600) 55%, transparent);
+  }
+
+  /* Grano de película: la isla es húmeda, nada es plano */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.32;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 260ms var(--ease-out-quart);
+  }
+  .link-underline:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+/* La animación de entrada nunca esconde contenido: los elementos parten
+   visibles y la clase de reveal sólo se añade cuando JS está vivo. */
+@keyframes drift-up {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+
+@keyframes shaft-sway {
+  0%,
+  100% {
+    transform: translate3d(-2%, 0, 0) rotate(-1.2deg);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(2.5%, 0, 0) rotate(1.4deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.94);
+    opacity: 0.75;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

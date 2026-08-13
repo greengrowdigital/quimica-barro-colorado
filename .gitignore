@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-ssr
+*.local
+.vercel
+.DS_Store
+.env
+.env.*
+!.env.example
+npm-debug.log*
+yarn-error.log*
+
+# Fuentes originales del trabajo (docx, pages, zip de WhatsApp)
+documentos y imagenes/
