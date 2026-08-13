@@ -12,3 +12,5 @@ yarn-error.log*
 
 # Fuentes originales del trabajo (docx, pages, zip de WhatsApp)
 documentos y imagenes/
+
+.vercel
