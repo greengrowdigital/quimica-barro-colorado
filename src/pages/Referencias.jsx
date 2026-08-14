@@ -28,7 +28,7 @@ export default function Referencias() {
         </Reveal>
       </section>
 
-      <section className="shell pb-[clamp(3.5rem,9vh,6rem)]" aria-label="APA 7">
+      <section className="defer-offscreen shell pb-[clamp(3.5rem,9vh,6rem)]" aria-label="APA 7">
         <Stagger as="ol" className="m-0 list-none p-0" step={0.05}>
           {referencias.map((entry, i) => (
             <StaggerItem
@@ -63,7 +63,7 @@ export default function Referencias() {
         </Stagger>
       </section>
 
-      <section className="bg-canopy-900 py-[clamp(3rem,8vh,5.5rem)]" aria-labelledby="creditos">
+      <section className="defer-offscreen bg-canopy-900 py-[clamp(3rem,8vh,5.5rem)]" aria-labelledby="creditos">
         <div className="shell">
           <Reveal>
             <h2

@@ -22,12 +22,11 @@
     <meta property="og:image" content="/img/dosel-ceiba.webp" />
     <meta property="og:locale" content="es_PA" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Literata:opsz,wght@7..72,400..600&family=Spline+Sans+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fuentes servidas desde este mismo dominio (ver src/styles/fonts.css).
+         Se piden desde el HTML para no esperar a que el navegador descubra
+         el @font-face dentro del CSS. -->
+    <link rel="preload" href="/fonts/BricolageGrotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Literata-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" as="image" href="/img/dosel-ceiba.webp" fetchpriority="high" />
   </head>
   <body>

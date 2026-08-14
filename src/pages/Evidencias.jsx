@@ -130,7 +130,7 @@ export default function Evidencias() {
         </section>
 
         {/* Video de la gira */}
-        <section className="bg-canopy-900 py-[clamp(3.5rem,9vh,6rem)]" aria-labelledby="video-gira">
+        <section className="defer-offscreen bg-canopy-900 py-[clamp(3.5rem,9vh,6rem)]" aria-labelledby="video-gira">
           <div className="shell grid gap-8 lg:grid-cols-[1fr_1.25fr] lg:items-center lg:gap-14">
             <Reveal>
               <h2
@@ -169,7 +169,7 @@ export default function Evidencias() {
         </section>
 
         {/* Curiosidades */}
-        <section className="shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="curiosidades">
+        <section className="defer-offscreen shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="curiosidades">
           <Reveal>
             <h2
               id="curiosidades"
@@ -206,7 +206,7 @@ export default function Evidencias() {
         </section>
 
         {/* Conclusión */}
-        <section className="relative isolate overflow-hidden" aria-labelledby="conclusion-evidencias">
+        <section className="defer-offscreen relative isolate overflow-hidden" aria-labelledby="conclusion-evidencias">
           <div className="absolute inset-0 -z-10">
             <Photo
               src="/img/dosel-cielo.webp"

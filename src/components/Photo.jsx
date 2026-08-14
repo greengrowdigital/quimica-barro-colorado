@@ -22,6 +22,15 @@ export function photoSize(src) {
   return LANDSCAPE.has(base) ? [1600, 1200] : [1200, 1600]
 }
 
+/* De cada foto hay dos ficheros: el grande y uno de 760. Declararlos como
+   srcset deja que un teléfono baje el pequeño —menos bytes y mucha menos
+   decodificación— sin que nadie pierda nitidez en una pantalla grande. */
+function buildSrcSet(src) {
+  if (src.includes('-sm.webp')) return undefined
+  const [w, h] = photoSize(src)
+  return `${src.replace(/\.webp$/, '-sm.webp')} ${Math.round((760 / Math.max(w, h)) * w)}w, ${src} ${w}w`
+}
+
 export default function Photo({
   src,
   alt,
@@ -36,10 +45,11 @@ export default function Photo({
   return (
     <img
       src={src}
+      srcSet={buildSrcSet(src)}
       alt={alt}
       width={w}
       height={h}
-      sizes={sizes}
+      sizes={sizes ?? '100vw'}
       loading={priority ? 'eager' : 'lazy'}
       fetchPriority={priority ? 'high' : 'auto'}
       decoding="async"

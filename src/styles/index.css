@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './fonts.css';
 
 /* ──────────────────────────────────────────────────────────────
    Sistema de diseño — "Estación de campo"
@@ -204,6 +205,14 @@
 }
 
 @layer utilities {
+  /* El navegador se salta el estilo y el layout de lo que queda fuera de
+     pantalla; `contain-intrinsic-size` le da una altura estimada para que la
+     barra de scroll no dé saltos mientras tanto. */
+  .defer-offscreen {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
   .tabular {
     font-variant-numeric: tabular-nums;
   }

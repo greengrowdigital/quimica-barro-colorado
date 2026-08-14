@@ -1,0 +1,11 @@
+# Las fuentes originales del trabajo viven junto al proyecto pero no se
+# despliegan: lo que el sitio usa ya está optimizado en public/img y public/media.
+documentos y imagenes/
+*.zip
+*.docx
+*.pages
+
+node_modules
+dist
+.git
+.impeccable

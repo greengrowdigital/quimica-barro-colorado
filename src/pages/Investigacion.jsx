@@ -146,7 +146,7 @@ export default function Investigacion() {
         </section>
 
         {/* Instalaciones */}
-        <section className="bg-canopy-900 py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="instalaciones">
+        <section className="defer-offscreen bg-canopy-900 py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="instalaciones">
           <div className="shell">
             <Reveal>
               <h2
@@ -217,7 +217,7 @@ export default function Investigacion() {
         </section>
 
         {/* Química aplicada a la conservación */}
-        <section className="shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="conservacion">
+        <section className="defer-offscreen shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="conservacion">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
             <div>
               <Reveal>

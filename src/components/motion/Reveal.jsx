@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, useLayoutEffect, useRef, useState } from 'react'
+import { Children, cloneElement, isValidElement, useEffect, useRef, useState } from 'react'
 
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)'
 
@@ -16,22 +16,27 @@ function useRevealState() {
   const ref = useRef(null)
   const [state, setState] = useState('idle')
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = ref.current
     if (!el || typeof IntersectionObserver === 'undefined' || prefersReduced()) return undefined
 
-    const rect = el.getBoundingClientRect()
-    if (rect.top < window.innerHeight * 0.92) {
-      setState('shown')
-      return undefined
-    }
-
-    setState('hidden')
+    // El rectángulo lo entrega la propia entrada del observador. Medirlo con
+    // `getBoundingClientRect` desde un efecto forzaba un layout síncrono de toda
+    // la página por cada bloque, y en un equipo lento eso bloqueaba el primer
+    // pintado más de un segundo.
+    let settled = false
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setState('shown')
           observer.disconnect()
+          settled = true
+          return
+        }
+        if (!settled) {
+          settled = true
+          const root = entry.rootBounds
+          if (root && entry.boundingClientRect.top >= root.bottom) setState('hidden')
         }
       },
       { rootMargin: '0px 0px -6% 0px', threshold: 0.12 },

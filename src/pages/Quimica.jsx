@@ -119,7 +119,7 @@ export default function Quimica() {
         </section>
 
         {/* 2.2 Suelo */}
-        <section className="bg-canopy-900 py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="suelo">
+        <section className="defer-offscreen bg-canopy-900 py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="suelo">
           <div className="shell">
             <SectionHead n={suelo.n} id={suelo.id} title={t(suelo.title)} />
 
@@ -159,7 +159,7 @@ export default function Quimica() {
         </section>
 
         {/* 2.3 Bosque */}
-        <section className="shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="bosque">
+        <section className="defer-offscreen shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="bosque">
           <SectionHead n={bosque.n} id={bosque.id} title={t(bosque.title)} />
 
           <div className="mt-8 max-w-[46rem]">
@@ -228,7 +228,7 @@ export default function Quimica() {
         </section>
 
         {/* 2.4 Ciclo del agua */}
-        <section className="bg-canopy-900 py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="ciclo-del-agua">
+        <section className="defer-offscreen bg-canopy-900 py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="ciclo-del-agua">
           <div className="shell">
             <SectionHead n={ciclo.n} id={ciclo.id} title={t(ciclo.title)} />
 
@@ -279,7 +279,7 @@ export default function Quimica() {
         </section>
 
         {/* 2.5 Calidad ambiental */}
-        <section className="shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="calidad-ambiental">
+        <section className="defer-offscreen shell py-[clamp(3.5rem,9vh,6.5rem)]" aria-labelledby="calidad-ambiental">
           <SectionHead n={calidad.n} id={calidad.id} title={t(calidad.title)} />
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
